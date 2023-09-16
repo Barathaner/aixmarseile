@@ -1,39 +1,52 @@
 from numpy import random
+import time
 
-MIN_NUMBER = 0
-MAX_NUMBER = 100
+MIN_NUMBER = 1
+MAX_NUMBER = 1000
 
 def game():
     ''' The game in itself    
     '''
-    
     # The random number to guess
-    r = random.randint(MIN_NUMBER,MAX_NUMBER)
+    r = random.randint(MIN_NUMBER, MAX_NUMBER)
     found = False
     
-    # (Eternal) loop
     while not found:
         
-        entry = input("\nEnter a number between "+str(MIN_NUMBER)+" and "+str(MAX_NUMBER)+": ")
-        while not entry.isdigit():
-            print("please input a number")
-            entry = input("\nEnter a number between "+str(MIN_NUMBER)+" and "+str(MAX_NUMBER)+": ")
+        entry = input(f"\nEnter a number between {MIN_NUMBER} and {MAX_NUMBER} (or type 'cheat' to reveal the number): ")
+        
+        # Cheats
+        if entry == "cheat":
+            print(f"The number is {r}. But try guessing it without cheating next time!")
+            continue
+        elif entry == "specialcheat":
+            print("\nGood job (with a little help), you guessed the number!")
+            return
+        
+        while not entry.isdigit() or not (MIN_NUMBER <= int(entry) <= MAX_NUMBER):
+            if not entry.isdigit():
+                print("Please input a number.")
+            else:
+                print("Number out of range! Think about your behaviour.")
+                time.sleep(10) # wait for 10 seconds
+            entry = input(f"\nEnter a number between {MIN_NUMBER} and {MAX_NUMBER}: ")
 
         entry = int(entry)
-        # Condition on what to do
-        if entry == r:
-            print("\n\nGood job, it was "+str(r)+"!!!")
-            found=True
-        elif entry>r:
+        # Hints and conditions on what to do
+        if abs(entry - r) > 250:
+            print("You're way off!")
+        elif entry == r:
+            print(f"\n\nGood job, it was {r}!!!")
+            found = True
+        elif entry > r:
             print("You're too high!")
         else:
             print("A bit more?")
-    	
- 
-# Start the game only if you wish
-playerwish = input("Hello, want to play a game? ")
-if playerwish in ["yes", "y"] :
-	game()
-	
 
+# Always start the game
+while True:
+    game()
+    again = input("Do you want to play again? (yes/no): ")
+    if again not in ["yes", "y"]:
+        break
 
