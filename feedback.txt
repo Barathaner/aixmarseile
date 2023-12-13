@@ -1,6 +1,6 @@
 Using same code as someone else should be acknowledged (TP2 & TP3).--> As you can see on my commit date, I wrote my code as the first one. so the other person should acknowledge me. But yes I helped other students. Jeremy Melpitz and me sometimes work together just as in the project.
 TP1 : Good
 TP2 : Good
-TP3 : Use plot instead of scatter in the first graph, in order to draw lines between the points.
+TP3 : Use plot instead of scatter in the first graph, in order to draw lines between the points. done.
 TP4 : Good
 TP5 : Good
