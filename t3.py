@@ -6,13 +6,13 @@ import matplotlib.pyplot as plt
 def generate_random_values(N):
     return [random.random() for _ in range(N)]
 
-# Displays three subplots: A scatter plot of (n, xn), another of (xn-1, xn), and a histogram of the random values
+# Displays three subplots: A line plot of (n, xn), another scatter plot of (xn-1, xn), and a histogram of the random values
 def display_subplots(N, values):
     plt.figure(figsize=(12, 4))
 
-    # First subplot
+    # First subplot - changed to line plot
     plt.subplot(131)
-    plt.scatter(list(range(N)), values, marker=".")
+    plt.plot(list(range(N)), values, marker=".")
     plt.title("(n, xn)")
     plt.xlabel("n")
     plt.ylabel("xn")
